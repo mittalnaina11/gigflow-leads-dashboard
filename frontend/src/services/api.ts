@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useAuthStore } from '@/store/authStore';
 
-const BASE_URL = import.meta.env.VITE_API_URL || '/api';
+const BASE_URL = '/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,
@@ -11,7 +11,6 @@ export const api = axios.create({
   timeout: 15000,
 });
 
-// Request interceptor — attach token
 api.interceptors.request.use(
   (config) => {
     const token = useAuthStore.getState().token;
@@ -23,7 +22,6 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Response interceptor — handle 401
 api.interceptors.response.use(
   (response: AxiosResponse) => response,
   (error: AxiosError) => {

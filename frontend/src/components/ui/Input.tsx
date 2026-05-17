@@ -149,14 +149,17 @@ export const Textarea: React.FC<TextareaProps> = ({
         id={textareaId}
         rows={3}
         className={cn(
-          'w-full rounded-lg border border-surface-200 dark:border-surface-700',
-          'bg-white dark:bg-surface-850 text-surface-900 dark:text-white',
-          'placeholder:text-surface-400 dark:placeholder:text-surface-500',
-          'focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent',
-          'transition-colors duration-150 py-2 px-3 text-sm resize-none',
-          error && 'border-red-400 focus:ring-red-400',
-          className
-        )}
+  'w-full rounded-lg border border-surface-200 dark:border-surface-700',
+  'bg-white dark:bg-surface-850 text-surface-900 dark:text-white',
+  'placeholder:text-surface-400 dark:placeholder:text-surface-500',
+  'focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent',
+  'transition-colors duration-150 py-2 px-3 text-sm',
+  'disabled:opacity-50 disabled:cursor-not-allowed',
+  leftIcon ? 'pl-9' : '',
+  rightIcon ? 'pr-9' : '',
+  error ? 'border-red-400 focus:ring-red-400' : '',
+  className
+)}
         {...props}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
