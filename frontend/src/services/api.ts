@@ -1,22 +1,21 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useAuthStore } from '@/store/authStore';
 
-const BASE_URL = '/api';
+// @ts-ignore
+const BASE_URL: string = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
+  ? import.meta.env.VITE_API_URL
+  : 'https://gigflow-backend-6zl5.onrender.com/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  headers: { 'Content-Type': 'application/json' },
   timeout: 15000,
 });
 
 api.interceptors.request.use(
   (config) => {
     const token = useAuthStore.getState().token;
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+    if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
   },
   (error) => Promise.reject(error)
