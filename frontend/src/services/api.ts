@@ -1,10 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useAuthStore } from '@/store/authStore';
 
-// @ts-ignore
-const BASE_URL: string = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_API_URL)
-  ? import.meta.env.VITE_API_URL
-  : 'https://gigflow-backend-6zl5.onrender.com/api';
+const BASE_URL = 'https://gigflow-backend-6zl5.onrender.com/api';
 
 export const api = axios.create({
   baseURL: BASE_URL,
